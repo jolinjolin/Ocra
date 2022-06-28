@@ -1,0 +1,23 @@
+{
+  "name": "ocra",
+  "version": "1.0.0",
+  "description": "E-commerce web app",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/app",
+    "server": "nodemon server/app",
+    "client": "npm start --prefix app",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Jolin",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.2",
+    "nodemon": "^2.0.18"
+  }
+}
