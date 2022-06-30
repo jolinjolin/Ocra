@@ -8,13 +8,19 @@
     "start": "node server/app",
     "server": "nodemon server/app",
     "client": "npm start --prefix app",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:insert": "node server/seed",
+    "data:delete": "node server/seed -d"
   },
   "author": "Jolin",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "got": "^12.1.0",
+    "mongoose": "^6.4.1"
   },
   "devDependencies": {
     "concurrently": "^7.2.2",
