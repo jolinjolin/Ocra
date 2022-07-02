@@ -4,7 +4,8 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Home from "./screens/Home"
 import ProductDetail from "./screens/ProductDetail"
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom' 
+import Cart from "./screens/Cart"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
@@ -13,8 +14,10 @@ const App = () => {
       <main>
         <Container>
           <Routes>
-            <Route path='/' element={<Home />} exact/>
-            <Route path='/product/:id' element={<ProductDetail />} exact/>
+            <Route path='/' element={<Home />} exact />
+            <Route path='/product/:id' element={<ProductDetail />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/cart/:id' element={<Cart />} />
           </Routes>
         </Container>
       </main>

@@ -24,6 +24,10 @@ const productSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    name: {
+        type: String,
+        required: true
+    },
     image: {
         type: String,
         required: true
@@ -56,7 +60,7 @@ const productSchema = mongoose.Schema({
         required: true,
         default: 0
     },
-    contInStock: {
+    countInStock: {
         type: Number,
         required: true,
         default: 0

@@ -20,8 +20,8 @@ const products = [
     category: 'Clothing',
     price: 69.99,
     countInStock: 1,
-    rating: 0.0,
-    numReviews: 0,
+    rating: 4,
+    numReviews: 1,
   },
   {
     name: 'Plain Contrast Mesh Baseball Cap',
