@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Profiler } from "react"
 import { Container } from "react-bootstrap"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -8,6 +8,7 @@ import Cart from "./screens/Cart"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './screens/Login'
 import Register from "./screens/Register"
+import UserProfile from "./screens/UserProfile"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path='/cart/:id' element={<Cart />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/profile' element={<UserProfile />} />
           </Routes>
         </Container>
       </main>

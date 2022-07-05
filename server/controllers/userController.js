@@ -20,7 +20,7 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
-//authenticate user and get tokern, GET /api/users/profile, private
+//display user profile, GET /api/users/profile, private
 const getUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id)
     if (user) {
@@ -31,7 +31,30 @@ const getUserProfile = asyncHandler(async (req, res) => {
             isAdmin: user.isAdmin,
         })
     } else {
-        res.status(401)
+        res.status(404)
+        throw new Error("User not found")
+    }
+})
+
+//edit user profile, GET /api/users/profile, private
+const editUserProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id)
+    if (user) {
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        if (req.body.password) {
+            user.password = req.body.password
+        }
+        const saveUser = await user.save()
+        res.json({
+            _id: saveUser._id,
+            name: saveUser.name,
+            email: saveUser.email,
+            isAdmin: saveUser.isAdmin,
+            token: generateToken(user._id)
+        })
+    } else {
+        res.status(404)
         throw new Error("User not found")
     }
 })
@@ -63,4 +86,4 @@ const addUser = asyncHandler(async (req, res) => {
         }
     }
 })
-export { authUser, getUserProfile, addUser }
+export { authUser, getUserProfile, editUserProfile, addUser }
