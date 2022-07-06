@@ -10,6 +10,8 @@ import Login from './screens/Login'
 import Register from "./screens/Register"
 import UserProfile from "./screens/UserProfile"
 import Shipping from "./screens/Shipping"
+import Payment from "./screens/Payment"
+import PlaceOrder from "./screens/PlaceOrder"
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
             <Route path='/register' element={<Register />} />
             <Route path='/profile' element={<UserProfile />} />
             <Route path='/shipping' element={<Shipping />} />
+            <Route path='/payment' element={<Payment />} />
+            <Route path='/placeorder' element={<PlaceOrder />} />
           </Routes>
         </Container>
       </main>
