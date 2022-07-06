@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './screens/Login'
 import Register from "./screens/Register"
 import UserProfile from "./screens/UserProfile"
+import Shipping from "./screens/Shipping"
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/profile' element={<UserProfile />} />
+            <Route path='/shipping' element={<Shipping />} />
           </Routes>
         </Container>
       </main>

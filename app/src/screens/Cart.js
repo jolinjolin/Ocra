@@ -21,7 +21,7 @@ const Cart = (location) => {
     }, [dispatch, id, qty])
 
     const checkoutHandler = (id) => {
-        navigate('/login?redirect=shipping')
+        navigate('/shipping')
     }
 
     const removeFromCartHandler = (id) => {
