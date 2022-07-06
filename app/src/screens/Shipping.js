@@ -11,7 +11,7 @@ const Shipping = () => {
     const { shippingAddress } = cart
     const [ address, setAddress ] = useState(shippingAddress.address)
     const [ city, setCity ] = useState(shippingAddress.city)
-    const [ zipcode, setZipcode ] = useState(shippingAddress.zipcide)
+    const [ zipcode, setZipcode ] = useState(shippingAddress.zipcode)
     const [ country, setCountry ] = useState(shippingAddress.country)
 
     const dispatch = useDispatch()
