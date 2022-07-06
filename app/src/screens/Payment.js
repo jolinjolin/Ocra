@@ -24,7 +24,7 @@ const Payment = () => {
 
     return <FormContainer>
         <Checkout step1 step2 step3 />
-        <h4>Payment method</h4>
+        <h4 style={{ fontSize: "1.2rem" }}>PAYMENT METHOD</h4>
         <Form onSubmit={submitHandler}>
             <FormGroup style={{ margin: "0.2rem 0" }}>
                 <FormLabel as="legend"></FormLabel>
@@ -42,7 +42,7 @@ const Payment = () => {
                     </FormCheck>
                 </Col>
             </FormGroup>
-            <Button type="submit" variant="primary" style={{ margin: "0.5rem 0" }}>Continue</Button>
+            <Button type="submit" variant="primary" style={{ margin: "0.5rem 0" }}>CONTINUE</Button>
 
         </Form>
     </FormContainer>

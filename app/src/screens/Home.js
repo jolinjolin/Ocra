@@ -10,14 +10,14 @@ const Home = () => {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
-    
+
     useEffect(() => {
         dispatch(listProducts())
     }, [dispatch])
 
     return <div>
-        <h3>New in</h3>
-        {loading ? <Loader/> : error ? <Message variant="danger">{error}</Message> : <Row>
+        <h4 style={{ fontSize: "1.2rem" }}>NEW IN</h4>
+        {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : <Row>
             {products.map(product => (
                 <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                     <Product product={product} />

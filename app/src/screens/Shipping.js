@@ -24,7 +24,7 @@ const Shipping = () => {
 
     return <FormContainer>
         <Checkout step1 step2/>
-        <h4>Shipping</h4>
+        <h4 style={{ fontSize: "1.2rem" }}>SHIPPING</h4>
         <Form onSubmit={submitHandler}>
             <FormGroup controlId="address" style={{ margin: "0.2rem 0" }}>
                 <FormLabel>
@@ -74,7 +74,7 @@ const Shipping = () => {
                 >
                 </FormControl>
             </FormGroup>
-            <Button type="submit" variant="primary" style={{ margin: "0.5rem 0" }}>Continue</Button>
+            <Button type="submit" variant="primary" style={{ margin: "0.5rem 0" }}>CONTINUE</Button>
 
         </Form>
     </FormContainer>

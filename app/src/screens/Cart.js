@@ -29,7 +29,7 @@ const Cart = (location) => {
     }
 
     return <Row>
-        <h4>Shopping cart</h4>
+        <h4 style={{ fontSize: "1.2rem" }}>SHOPPING CART</h4>
         <Col md={8}>
             {cartItems.length === 0 ? <Message>Your cart is empty <Link to='/'>Back</Link></Message> : (
                 <ListGroup variant='flush'>
@@ -76,7 +76,7 @@ const Cart = (location) => {
                 </ListGroup>
                 <ListGroup variant='flush'>
                     <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
-                        Proceed to check out
+                        PROCEED TO CHECK OUT
                     </Button>
                 </ListGroup>
             </Card>

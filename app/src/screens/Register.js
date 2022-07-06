@@ -38,7 +38,7 @@ const Register = () => {
     }, [userInfo, redirect])
 
     return <FormContainer>
-        <h4>Sign up</h4>
+        <h4 style={{ fontSize: "1.2rem" }}>SIGN UP</h4>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
         <Form onSubmit={submitHandler}>
@@ -56,7 +56,7 @@ const Register = () => {
             </FormGroup>
             <FormGroup controlId="email" style={{ margin: "0.2rem 0" }}>
                 <FormLabel>
-                    Email address
+                    Email Address
                 </FormLabel>
                 <FormControl
                     type="email"
@@ -80,7 +80,7 @@ const Register = () => {
             </FormGroup>
             <FormGroup controlId="confirmPassword" style={{ margin: "0.2rem 0" }}>
                 <FormLabel>
-                    Confirm password
+                    Confirm Password
                 </FormLabel>
                 <FormControl
                     type="password"

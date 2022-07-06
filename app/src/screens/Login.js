@@ -30,12 +30,12 @@ const Login = () => {
     }, [userInfo, redirect])
 
     return <FormContainer>
-        <h4>Sign in</h4>
+        <h4 style={{ fontSize: "1.2rem" }}>SIGN IN</h4>
         {error && <Message variant="danger">{error}</Message>}
         <Form onSubmit={submitHandler}>
             <FormGroup controlId="email" style={{margin:"0.2rem 0"}}>
                 <FormLabel>
-                    Email address
+                    Email Address
                 </FormLabel>
                 <FormControl
                     type="email"
@@ -58,12 +58,12 @@ const Login = () => {
                 </FormControl>
             </FormGroup>
             <Button type="submit" variant="primary" style={{margin:"0.5rem 0"}}>
-                Sign in
+                Sign In
             </Button>
         </Form>
         <Row className="py-3">
             <Col>
-                New customer? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link>
+                New Customer? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link>
             </Col>
         </Row>
     </FormContainer>

@@ -52,7 +52,7 @@ const UserProfile = () => {
 
     return <Row>
         <Col md={3}>
-            <h4>User profile</h4>
+            <h4 style={{ fontSize: "1.2rem" }}>USER PROFILE</h4>
             {message && <Message variant="danger">{message}</Message>}
             {error && <Message variant="danger">{error}</Message>}
             {success && <Message variant="success">Profile updated</Message>}
@@ -71,7 +71,7 @@ const UserProfile = () => {
                 </FormGroup>
                 <FormGroup controlId="email" style={{ margin: "0.2rem 0" }}>
                     <FormLabel>
-                        Email address
+                        Email Address
                     </FormLabel>
                     <FormControl
                         type="email"
@@ -95,7 +95,7 @@ const UserProfile = () => {
                 </FormGroup>
                 <FormGroup controlId="confirmPassword" style={{ margin: "0.2rem 0" }}>
                     <FormLabel>
-                        Confirm password
+                        Confirm Password
                     </FormLabel>
                     <FormControl
                         type="password"
@@ -106,12 +106,12 @@ const UserProfile = () => {
                     </FormControl>
                 </FormGroup>
                 <Button type="submit" variant="primary" style={{ margin: "0.5rem 0" }}>
-                    Update
+                    UPDATE
                 </Button>
             </Form>
         </Col>
         <Col md={9}>
-            <h4>Orders</h4>
+            <h4 style={{ fontSize: "1.2rem" }}>ORDERS</h4>
         </Col>
     </Row>
 }

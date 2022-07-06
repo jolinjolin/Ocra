@@ -25,7 +25,7 @@ const addToCartHandler = () => {
 
     return <>
         <Link className="btn btn-light my-3" to='/'>
-            Back
+            BACK
         </Link>
         {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : <Row>
             <Col md={6}>
@@ -95,7 +95,7 @@ const addToCartHandler = () => {
                                 disabled={product.countInStock === 0}
                                 onClick={addToCartHandler}
                                 >
-                                    Add to cart
+                                    ADD TO CART
                                 </Button>
                             </Row>
                         </ListGroupItem>

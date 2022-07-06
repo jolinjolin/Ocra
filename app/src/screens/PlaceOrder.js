@@ -46,17 +46,17 @@ const PlaceOrder = () => {
                 <Col md={8}>
                     <ListGroup variant="flush">
                         <ListGroupItem>
-                            <h4 style={{ padding: "1rem 0" }}>Shipping</h4>
-                            <p style={{ fontSize: "1.2rem" }}>Address</p>
+                            <h4 style={{ fontSize: "1.2rem" }}>SHIPPING</h4>
+                            <p style={{ fontSize: "1rem" }}>Address</p>
                             {cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.zipcode}, {cart.shippingAddress.country}
                         </ListGroupItem>
                         <ListGroupItem>
-                            <h4 style={{ padding: "1rem 0" }}>Payment method</h4>
-                            <p style={{ fontSize: "1.2rem" }}></p>
+                            <h4 style={{ fontSize: "1.2rem" }}>PAYMENT METHOD</h4>
+                            <p style={{ fontSize: "1rem" }}></p>
                             {cart.paymentMethod}
                         </ListGroupItem>
                         <ListGroupItem>
-                            <h4 style={{ padding: "1rem 0" }}>Order items</h4>
+                            <h4 style={{ fontSize: "1.2rem" }} >ORDER ITEMS</h4>
                             {cart.cartItems.length === 0 ? <Message>Your cart is empty</Message> : (
                                 <ListGroup variant="flush">
                                     {cart.cartItems.map((item, index) => (
@@ -83,7 +83,7 @@ const PlaceOrder = () => {
                     <Card>
                         <ListGroup variant="flush">
                             <ListGroupItem>
-                                <h4>Order summary</h4>
+                                <h4 style={{ fontSize: "1.2rem" }}>ORDER SUMMARY</h4>
                             </ListGroupItem>
                             <ListGroupItem>
                                 <Row>
@@ -93,19 +93,19 @@ const PlaceOrder = () => {
                             </ListGroupItem>
                             <ListGroupItem>
                                 <Row>
-                                    <Col>Shipping</Col>
+                                    <Col>Shipping & Handling</Col>
                                     <Col>${cart.shippingPrice}</Col>
                                 </Row>
                             </ListGroupItem>
                             <ListGroupItem>
                                 <Row>
-                                    <Col>Tax</Col>
+                                    <Col>Estimate Tax</Col>
                                     <Col>${cart.taxPrice}</Col>
                                 </Row>
                             </ListGroupItem>
                             <ListGroupItem>
                                 <Row>
-                                    <Col>Total</Col>
+                                    <Col>Order Total</Col>
                                     <Col>${cart.totalPrice}</Col>
                                 </Row>
                             </ListGroupItem>
@@ -120,7 +120,7 @@ const PlaceOrder = () => {
                                     disabled={cart.cartItems == 0}
                                     onClick={placeOrderHandler}
                                 >
-                                    Place order
+                                    PLACE ORDER
                                 </Button>
                             </ListGroupItem>
                         </ListGroup>

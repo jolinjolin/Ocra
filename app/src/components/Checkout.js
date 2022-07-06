@@ -46,7 +46,7 @@ const Checkout = ({ step1, step2, step3, step4 }) => {
                         </NavLink>
                     </LinkContainer>
                 ) : (
-                    <NavLink disabled>placeorder</NavLink>
+                    <NavLink disabled>Placeorder</NavLink>
                 )}
             </NavItem>
         </Nav>
