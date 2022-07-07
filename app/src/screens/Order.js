@@ -75,7 +75,7 @@ const Order = () => {
                             <ListGroupItem>
                                 <h4 style={{ fontSize: "1.2rem" }}>PAYMENT METHOD</h4>
                                 <p style={{ fontSize: "1rem" }}>{order.paymentMethod}</p>
-                                {order.isPaid ? <Message variant="success">Paid on {order.paidAt}</Message> : (
+                                {order.isPaid ? <Message variant="success">Paid on {order.paidAt.substring(0, 10)}</Message> : (
                                     <Message variant="info">Not paid</Message>)}
                             </ListGroupItem>
                             <ListGroupItem>

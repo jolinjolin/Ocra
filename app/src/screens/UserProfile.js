@@ -132,7 +132,7 @@ const UserProfile = () => {
                         {orders.map(el => (
                             <tr key={el._id}>
                                 <td>{el._id}</td>
-                                <td>{el._createdAt? (el._createdAt.substring(0, 10)): ""}</td>
+                                <td>{el.createdAt.substring(0, 10)}</td>
                                 <td>{el.totalPrice}</td>
                                 <td>{el.isPaid ? (el.paidAt.substring(0, 10)) : (
                                     <i className="fas fa-times" style={{ color: "red" }}></i>
