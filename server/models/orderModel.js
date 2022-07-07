@@ -53,7 +53,7 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    aymentResult: {
+    paymentResult: {
         id: {
             type: String
         },

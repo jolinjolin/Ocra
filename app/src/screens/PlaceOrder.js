@@ -36,7 +36,6 @@ const PlaceOrder = () => {
         if (success) {
             navigate(`/order/${order._id}`)
         }
-        //eslint-disable-next-line
     }, [navigate, success])
 
     return (
@@ -99,7 +98,7 @@ const PlaceOrder = () => {
                             </ListGroupItem>
                             <ListGroupItem>
                                 <Row>
-                                    <Col>Estimate Tax</Col>
+                                    <Col>Estimated Tax</Col>
                                     <Col>${cart.taxPrice}</Col>
                                 </Row>
                             </ListGroupItem>
