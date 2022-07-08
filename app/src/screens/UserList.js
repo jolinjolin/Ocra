@@ -6,7 +6,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { register } from '../actions/userActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { listUsers } from '../actions/userActions'
+import { listUsers, deleteUser } from '../actions/userActions'
 
 const UserList = () => {
 
@@ -14,23 +14,28 @@ const UserList = () => {
     const { loading, error, users } = userList
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
+    const userDelete = useSelector(state => state.userDelete)
+    const { success: successDelete } = userDelete
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(() => {
-        if(userInfo && userInfo.isAdmin){
-        dispatch(listUsers())
-        } else{
+        if (userInfo && userInfo.isAdmin) {
+            dispatch(listUsers())
+        } else {
             navigate('/login')
         }
-    }, [dispatch, navigate])
+    }, [dispatch, navigate, successDelete, userInfo])
 
     const deleteHandler = (id) => {
-
+        if(window.confirm("Confirm to delete?")){
+             dispatch(deleteUser(id))
+            console.log("deleted")
+        }   
     }
 
     return (<>
-        <h4 style={{fontSize: "1.2rem"}}>Users</h4>
+        <h4 style={{ fontSize: "1.2rem" }}>Users</h4>
         {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
             <Table striped bordered hover responsive className='table-sm'>
                 <thead>
@@ -54,7 +59,7 @@ const UserList = () => {
                                 )}
                             </td>
                             <td>
-                                <LinkContainer to={`/user/${el.id}/edit`}>
+                                <LinkContainer to={`/admin/user/${el._id}/edit`}>
                                     <Button variant="light" className="btn-sm">
                                         <i className="fas fa-edit"></i>
                                     </Button>

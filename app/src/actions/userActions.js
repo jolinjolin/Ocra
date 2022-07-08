@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { ORDER_LIST_USER_RESET } from '../constants/orderConstants'
 import {
+    USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_SUCCESS,
     USER_DETAIL_FAIL, USER_DETAIL_REQUEST, USER_DETAIL_RESET, USER_DETAIL_SUCCESS,
+    USER_EDIT_FAIL, USER_EDIT_REQUEST, USER_EDIT_SUCCESS,
     USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_RESET, USER_LIST_SUCCESS,
     USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT,
     USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
@@ -149,6 +151,57 @@ export const listUsers = () => async (dispatch, getState) => {
     } catch (err) {
         dispatch({
             type: USER_LIST_FAIL,
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        })
+        console.log(err)
+    }
+}
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_DELETE_REQUEST })
+        const { userLogin } = getState()
+        const userInfo = userLogin.userInfo
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.delete(`/api/users/${id}`, config)
+        dispatch({
+            type: USER_DELETE_SUCCESS,
+        })
+    } catch (err) {
+        dispatch({
+            type: USER_DELETE_FAIL,
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        })
+        console.log(err)
+    }
+}
+
+export const editUser = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_EDIT_REQUEST })
+        const { userLogin } = getState()
+        const userInfo = userLogin.userInfo
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const { data } = await axios.put(`/api/users/${user.id}`, user, config)
+        dispatch({
+            type: USER_EDIT_SUCCESS,
+        })
+        dispatch({
+            type: USER_DETAIL_SUCCESS,
+            payload: data
+        })
+    } catch (err) {
+        dispatch({
+            type: USER_EDIT_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
         console.log(err)
