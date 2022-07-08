@@ -6,59 +6,69 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { register } from '../actions/userActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { listUsers, deleteUser } from '../actions/userActions'
+import { listProducts, deleteProduct } from '../actions/productActions'
 
-const UserList = () => {
-
-    const userList = useSelector(state => state.userList)
-    const { loading, error, users } = userList
+const ProductList = () => {
+    const productList = useSelector(state => state.productList)
+    const { loading, error, products } = productList
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
-    const userDelete = useSelector(state => state.userDelete)
-    const { success: successDelete } = userDelete
+    const productDelete = useSelector(state => state.productDelete)
+    const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
-            dispatch(listUsers())
+            dispatch(listProducts())
         } else {
             navigate('/login')
         }
-    }, [dispatch, navigate, successDelete, userInfo])
+    }, [dispatch, navigate, userInfo, successDelete])
+
+    const createProductHandler = (product) => {
+
+    }
 
     const deleteHandler = (id) => {
-        if(window.confirm("Confirm to delete?")){
-             dispatch(deleteUser(id))
-        }   
+        if (window.confirm("Confirm to delete?")) {
+            dispatch(deleteProduct(id))
+        }
     }
 
     return (<>
-        <h4 style={{ fontSize: "1.2rem" }}>Users</h4>
+        <Row className="align-items-center">
+            <Col>
+                <h4 style={{ fontSize: "1.2rem" }}>Products</h4>
+            </Col>
+            <Col style={{textAlign:"right"}}>
+                <Button className="my-3" onClick={createProductHandler}>Add Product</Button>
+            </Col>
+        </Row>
+        {loadingDelete && <Loader />}
+        {errorDelete && <Message variant="danger">{errorDelete}</Message>}
         {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
             <Table striped bordered hover responsive className='table-sm'>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>NAME</th>
-                        <th>EMAIL</th>
-                        <th>ADMIN</th>
+                        <th>PRICE</th>
+                        <th>CATEGORY</th>
+                        <th>BRAND</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(el => (
+                    {products.map(el => (
                         <tr key={el._id}>
                             <td>{el._id}</td>
                             <td>{el.name}</td>
-                            <td><a href={`mailto:${el.email}`}>{el.email}</a></td>
+                            <td>{el.price}</td>
+                            <td>{el.category}</td>
+                            <td>{el.brand}</td>
                             <td>
-                                {el.isAdmin ? (<i className="fas fa-check" style={{ color: "green" }}></i>) : (
-                                    <i className="fas fa-times" style={{ color: "red" }}></i>
-                                )}
-                            </td>
-                            <td>
-                                <LinkContainer to={`/admin/user/${el._id}/edit`}>
+                                <LinkContainer to={`/admin/product/${el._id}/edit`}>
                                     <Button variant="light" className="btn-sm">
                                         <i className="fas fa-edit"></i>
                                     </Button>
@@ -76,4 +86,4 @@ const UserList = () => {
     )
 }
 
-export default UserList
+export default ProductList
