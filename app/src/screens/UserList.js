@@ -12,11 +12,18 @@ const UserList = () => {
 
     const userList = useSelector(state => state.userList)
     const { loading, error, users } = userList
-    const dispatch = useDispatch()
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     useEffect(() => {
+        if(userInfo && userInfo.isAdmin){
         dispatch(listUsers())
-    }, [dispatch])
+        } else{
+            navigate('/login')
+        }
+    }, [dispatch, navigate])
 
     const deleteHandler = (id) => {
 

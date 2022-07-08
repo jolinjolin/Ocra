@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ORDER_LIST_USER_RESET } from '../constants/orderConstants'
 import {
     USER_DETAIL_FAIL, USER_DETAIL_REQUEST, USER_DETAIL_RESET, USER_DETAIL_SUCCESS,
-    USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS,
+    USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_RESET, USER_LIST_SUCCESS,
     USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT,
     USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
     USER_UPDATE_FAIL, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS
@@ -37,6 +37,7 @@ export const logout = () => async (dispatch) => {
         dispatch({ type: USER_LOGOUT })
         dispatch({ type: USER_DETAIL_RESET })
         dispatch({ type: ORDER_LIST_USER_RESET })
+        dispatch({ type: USER_LIST_RESET })
     } catch (err) {
         console.log(err)
     }

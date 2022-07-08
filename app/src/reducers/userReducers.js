@@ -1,7 +1,7 @@
 
 import {
     USER_DETAIL_FAIL, USER_DETAIL_REQUEST, USER_DETAIL_RESET, USER_DETAIL_SUCCESS,
-    USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS,
+    USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_RESET, USER_LIST_SUCCESS,
     USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT,
     USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
     USER_UPDATE_FAIL, USER_UPDATE_REQUEST, USER_UPDATE_RESET, USER_UPDATE_SUCCESS
@@ -73,6 +73,8 @@ export const userListeducer = (state = { users: [] }, action) => {
             return { loading: false, users: action.payload }
         case USER_LIST_FAIL:
             return { loading: false, error: action.payload }
+        case USER_LIST_RESET:
+            return { users: [] }
         default:
             return state
     }
