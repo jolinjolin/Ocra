@@ -22,7 +22,6 @@ const Header = () => {
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {/* <Route render={(navigate)=><Search navigate={navigate}/>}/> */}
           <Search/>
           <Nav className="ms-auto">
             <LinkContainer to='/cart'>
