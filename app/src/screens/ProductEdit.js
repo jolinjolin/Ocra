@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Form, Button, FormGroup, FormLabel, FormControl, FormCheck } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,6 +18,7 @@ const ProductEdit = () => {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [countInStock, setCountInStock] = useState('')
+    const [uploading, setUploading] = useState(false)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -28,7 +30,7 @@ const ProductEdit = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(editProduct({
-            _id:id,
+            _id: id,
             name,
             price,
             brand,
@@ -37,6 +39,26 @@ const ProductEdit = () => {
             description,
             countInStock
         }))
+    }
+
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append('image', file)
+        setUploading(true)
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            const { data } = await axios.post('/api/upload', formData, config)
+            setImage(data)
+            setUploading(false)
+        } catch (err) {
+            console.log(err)
+            setUploading(false)
+        }
     }
 
     useEffect(() => {
@@ -93,7 +115,7 @@ const ProductEdit = () => {
                         </FormGroup>
                         <FormGroup controlId="image" style={{ margin: "0.2rem 0" }}>
                             <FormLabel>
-                                Image
+                                Image url
                             </FormLabel>
                             <FormControl
                                 type="text"
@@ -103,6 +125,14 @@ const ProductEdit = () => {
                             >
                             </FormControl>
                         </FormGroup>
+                        <Form.Group controlId="imageFile" className="mb-3">
+                            <Form.Label>Choose File</Form.Label>
+                            <Form.Control
+                                type="file"
+                                onChange={uploadFileHandler}
+                            />
+                            {uploading && <Loader />}
+                        </Form.Group>
                         <FormGroup controlId="brand" style={{ margin: "0.2rem 0" }}>
                             <FormLabel>
                                 Brand
