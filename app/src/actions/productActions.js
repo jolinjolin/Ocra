@@ -4,7 +4,8 @@ import {
     PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL,
     PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL,
     PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL, 
-    PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL
+    PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, 
+    PRODUCT_ADD_REVIEW_REQUEST, PRODUCT_ADD_REVIEW_SUCCESS, PRODUCT_ADD_REVIEW_FAIL
 } from '../constants/productConstants'
 
 export const listProducts = () => async (dispatch) => {
@@ -88,7 +89,6 @@ export const addProduct = () => async (dispatch, getState) => {
 
 export const editProduct = (product) => async (dispatch, getState) => {
     try {
-        console.log(product)
         dispatch({ type: PRODUCT_EDIT_REQUEST })
         const { userLogin } = getState()
         const userInfo = userLogin.userInfo
@@ -106,6 +106,30 @@ export const editProduct = (product) => async (dispatch, getState) => {
     } catch (err) {
         dispatch({
             type: PRODUCT_EDIT_FAIL,
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        })
+        console.log(err)
+    }
+}
+
+export const addProductReview = (id, review) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: PRODUCT_ADD_REVIEW_REQUEST })
+        const { userLogin } = getState()
+        const userInfo = userLogin.userInfo
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.post(`/api/products/${id}/reviews`, review, config)
+        dispatch({
+            type: PRODUCT_ADD_REVIEW_SUCCESS,
+        })
+    } catch (err) {
+        dispatch({
+            type: PRODUCT_ADD_REVIEW_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
         console.log(err)

@@ -2,7 +2,9 @@ import {
     PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
     PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL,
     PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL,
-    PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL, PRODUCT_ADD_RESET, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_EDIT_RESET
+    PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL, PRODUCT_ADD_RESET, 
+    PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_EDIT_RESET, 
+    PRODUCT_ADD_REVIEW_REQUEST, PRODUCT_ADD_REVIEW_SUCCESS, PRODUCT_ADD_REVIEW_FAIL, PRODUCT_ADD_REVIEW_RESET
 } from '../constants/productConstants'
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -69,6 +71,21 @@ export const productEditReducer = (state = { produt: {} }, action) => {
             return { loading: false, error: action.payload }
         case PRODUCT_EDIT_RESET:
             return { product: {} }
+        default:
+            return state
+    }
+}
+
+export const productReviewAddReducer = (state = {}, action) => {
+    switch (action.type) {
+        case PRODUCT_ADD_REVIEW_REQUEST:
+            return { loading: true, }
+        case PRODUCT_ADD_REVIEW_SUCCESS:
+            return { loading: false, success: true }
+        case PRODUCT_ADD_REVIEW_FAIL:
+            return { loading: false, error: action.payload }
+        case PRODUCT_ADD_REVIEW_RESET:
+            return {}
         default:
             return state
     }
