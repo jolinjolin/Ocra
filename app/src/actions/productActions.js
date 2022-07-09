@@ -3,7 +3,8 @@ import {
     PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
     PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL,
     PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL,
-    PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL
+    PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL, 
+    PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL
 } from '../constants/productConstants'
 
 export const listProducts = () => async (dispatch) => {
@@ -79,6 +80,32 @@ export const addProduct = () => async (dispatch, getState) => {
     } catch (err) {
         dispatch({
             type: PRODUCT_ADD_FAIL,
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        })
+        console.log(err)
+    }
+}
+
+export const editProduct = (product) => async (dispatch, getState) => {
+    try {
+        console.log(product)
+        dispatch({ type: PRODUCT_EDIT_REQUEST })
+        const { userLogin } = getState()
+        const userInfo = userLogin.userInfo
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const { data } = await axios.put(`/api/products/${product._id}`, product, config)
+        dispatch({
+            type: PRODUCT_EDIT_SUCCESS,
+            payload: data
+        })
+    } catch (err) {
+        dispatch({
+            type: PRODUCT_EDIT_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
         console.log(err)

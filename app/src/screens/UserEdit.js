@@ -45,7 +45,7 @@ const UserEdit = () => {
         <>
             <Link to="/admin/userlist" className="btn btn-light my-3">Back</Link>
             <FormContainer>
-                <h4 style={{ fontSize: "1.2rem" }}>EDIT USER</h4>
+                <h4 style={{ fontSize: "1.2rem" }}>Edit User</h4>
                 {loadingEdit && <Loader />}
                 {errorEdit && <Message variant="danger">{errorEdit}</Message>}
                 {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
