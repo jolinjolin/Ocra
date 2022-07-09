@@ -63,7 +63,7 @@ const OrderList = () => {
                                 )}
                             </td>
                             <td>
-                                <LinkContainer to={`/admin/order/${el._id}`}>
+                                <LinkContainer to={`/order/${el._id}`}>
                                     <Button variant="light" className="btn-sm">
                                         Details
                                     </Button>

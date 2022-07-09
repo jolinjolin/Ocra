@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {
     ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS,
+    ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS,
     ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS,
     ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS,
     ORDER_LIST_USER_FAIL, ORDER_LIST_USER_REQUEST, ORDER_LIST_USER_SUCCESS,
@@ -59,7 +60,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     }
 }
 
-export const payOrder = (id, paymentRestul) => async (dispatch, getState) => {
+export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
     try {
         dispatch({ type: ORDER_PAY_REQUEST })
         const { userLogin } = getState()
@@ -70,7 +71,7 @@ export const payOrder = (id, paymentRestul) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.put(`/api/orders/${id}/pay`, paymentRestul, config)
+        const { data } = await axios.put(`/api/orders/${id}/pay`, paymentResult, config)
         dispatch({
             type: ORDER_PAY_SUCCESS,
             payload: data
@@ -79,6 +80,31 @@ export const payOrder = (id, paymentRestul) => async (dispatch, getState) => {
     } catch (err) {
         dispatch({
             type: ORDER_PAY_FAIL,
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        })
+        console.log(err)
+    }
+}
+
+export const deliverOrder = (order) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: ORDER_DELIVER_REQUEST })
+        const { userLogin } = getState()
+        const userInfo = userLogin.userInfo
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const { data } = await axios.put(`/api/orders/${order._id}/deliver`, {}, config)
+        dispatch({
+            type: ORDER_DELIVER_SUCCESS,
+            payload: data
+        })
+
+    } catch (err) {
+        dispatch({
+            type: ORDER_DELIVER_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
         console.log(err)
