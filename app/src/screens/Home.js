@@ -5,15 +5,17 @@ import { listProducts } from '../actions/productActions'
 import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import { useParams } from 'react-router-dom'
 
 const Home = () => {
+    const {keyword} = useParams()
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
 
     useEffect(() => {
-        dispatch(listProducts())
-    }, [dispatch])
+        dispatch(listProducts(keyword))
+    }, [dispatch, keyword])
 
     return <div>
         <h4 style={{ fontSize: "1.2rem" }}>NEW IN</h4>
