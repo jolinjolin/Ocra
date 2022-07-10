@@ -46,7 +46,7 @@ const Cart = (location) => {
                                     {el.price}
                                 </Col>
                                 <Col md={2}>
-                                    <FormControl as='select' value={qty || ''} onChange={(e) =>
+                                    <FormControl as='select' value={el.qty} onChange={(e) =>
                                         dispatch(addToCart(el.product, Number(e.target.value)))}>
                                         {[...Array(el.countInStock).keys()].map(el => (
                                             <option key={el + 1} value={el + 1}>
