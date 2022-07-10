@@ -31,7 +31,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
             type: ORDER_CREATE_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -56,7 +55,6 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
             type: ORDER_DETAILS_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -82,7 +80,6 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
             type: ORDER_PAY_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -107,7 +104,6 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
             type: ORDER_DELIVER_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -132,7 +128,6 @@ export const listUserOrders = () => async (dispatch, getState) => {
             type: ORDER_LIST_USER_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -157,6 +152,5 @@ export const listOrders = () => async (dispatch, getState) => {
             type: ORDER_LIST_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }

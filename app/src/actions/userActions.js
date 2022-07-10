@@ -29,7 +29,6 @@ export const login = (email, password) => async (dispatch) => {
             type: USER_LOGIN_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -41,7 +40,6 @@ export const logout = () => async (dispatch) => {
         dispatch({ type: ORDER_LIST_USER_RESET })
         dispatch({ type: USER_LIST_RESET })
     } catch (err) {
-        console.log(err)
     }
 }
 
@@ -68,7 +66,6 @@ export const register = (name, email, password) => async (dispatch) => {
             type: USER_REGISTER_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -94,7 +91,6 @@ export const getUserDetail = (id) => async (dispatch, getState) => {
             type: USER_DETAIL_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -129,7 +125,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             type: USER_UPDATE_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -153,7 +148,6 @@ export const listUsers = () => async (dispatch, getState) => {
             type: USER_LIST_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -176,7 +170,6 @@ export const deleteUser = (id) => async (dispatch, getState) => {
             type: USER_DELETE_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -204,6 +197,5 @@ export const editUser = (user) => async (dispatch, getState) => {
             type: USER_EDIT_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }

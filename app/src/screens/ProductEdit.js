@@ -56,7 +56,6 @@ const ProductEdit = () => {
             setImage(data)
             setUploading(false)
         } catch (err) {
-            console.log(err)
             setUploading(false)
         }
     }

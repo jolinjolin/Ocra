@@ -59,7 +59,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
             type: PRODUCT_DELETE_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -83,7 +82,6 @@ export const addProduct = () => async (dispatch, getState) => {
             type: PRODUCT_ADD_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -108,7 +106,6 @@ export const editProduct = (product) => async (dispatch, getState) => {
             type: PRODUCT_EDIT_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 
@@ -132,7 +129,6 @@ export const addProductReview = (id, review) => async (dispatch, getState) => {
             type: PRODUCT_ADD_REVIEW_FAIL,
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
-        console.log(err)
     }
 }
 

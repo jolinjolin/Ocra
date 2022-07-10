@@ -19,7 +19,6 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
         })
         localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
     } catch (e) {
-        console.log(e)
     }
 }
 
@@ -31,7 +30,6 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
         })
         localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
     } catch (e) {
-        console.log(e)
     }
 }
 
@@ -43,7 +41,6 @@ export const saveShippingAddress = (data) => async (dispatch) => {
         })
         localStorage.setItem('shippingAddress', JSON.stringify(data))
     } catch (e) {
-        console.log(e)
     }
 }
 
@@ -55,6 +52,5 @@ export const savePayment = (data) => async (dispatch) => {
         })
         localStorage.setItem('paymentMethod', JSON.stringify(data))
     } catch (e) {
-        console.log(e)
     }
 }
