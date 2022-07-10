@@ -104,4 +104,10 @@ const addReview = asyncHandler(async (req, res) => {
     }
 })
 
-export { getProducts, getProductById, deleteProduct, addProduct, editProduct, addReview }
+//get recommended products, GET /api/products/top
+const getRecommendedProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({ rating: -1 }).limit(5)
+    res.json(products)
+})
+
+export { getProducts, getProductById, deleteProduct, addProduct, editProduct, addReview, getRecommendedProducts }

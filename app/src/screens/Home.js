@@ -7,6 +7,7 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { useParams } from 'react-router-dom'
 import Paginate from '../components/Paginate'
+import Carous from '../components/Carous'
 
 const Home = () => {
     var { keyword, pageNumber } = useParams()
@@ -21,6 +22,7 @@ const Home = () => {
 
     return (
         <>
+            {!keyword && <Carous />}
             <h4 style={{ fontSize: "1.2rem" }}>NEW IN</h4>
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                 <>

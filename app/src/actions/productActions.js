@@ -5,7 +5,7 @@ import {
     PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL,
     PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL,
     PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL,
-    PRODUCT_ADD_REVIEW_REQUEST, PRODUCT_ADD_REVIEW_SUCCESS, PRODUCT_ADD_REVIEW_FAIL
+    PRODUCT_ADD_REVIEW_REQUEST, PRODUCT_ADD_REVIEW_SUCCESS, PRODUCT_ADD_REVIEW_FAIL, PRODUCT_RECOMMEND_REQUEST, PRODUCT_RECOMMEND_SUCCESS, PRODUCT_RECOMMEND_FAIL
 } from '../constants/productConstants'
 
 export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
@@ -133,5 +133,21 @@ export const addProductReview = (id, review) => async (dispatch, getState) => {
             payload: err.response && err.response.data.message ? err.response.data.message : err.message
         })
         console.log(err)
+    }
+}
+
+export const listRecommendProduct = () => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_RECOMMEND_REQUEST })
+        const { data } = await axios.get(`/api/products/recommend`)
+        dispatch({
+            type: PRODUCT_RECOMMEND_SUCCESS,
+            payload: data
+        })
+    } catch (e) {
+        dispatch({
+            type: PRODUCT_RECOMMEND_FAIL,
+            payload: e.response && e.response.data.message ? e.response.data.message : e.message
+        })
     }
 }

@@ -4,7 +4,8 @@ import {
     PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL,
     PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL, PRODUCT_ADD_RESET,
     PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_EDIT_RESET,
-    PRODUCT_ADD_REVIEW_REQUEST, PRODUCT_ADD_REVIEW_SUCCESS, PRODUCT_ADD_REVIEW_FAIL, PRODUCT_ADD_REVIEW_RESET
+    PRODUCT_ADD_REVIEW_REQUEST, PRODUCT_ADD_REVIEW_SUCCESS, PRODUCT_ADD_REVIEW_FAIL, 
+    PRODUCT_ADD_REVIEW_RESET, PRODUCT_RECOMMEND_REQUEST, PRODUCT_RECOMMEND_SUCCESS, PRODUCT_RECOMMEND_FAIL
 } from '../constants/productConstants'
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -86,6 +87,19 @@ export const productReviewAddReducer = (state = {}, action) => {
             return { loading: false, error: action.payload }
         case PRODUCT_ADD_REVIEW_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+export const productRecommendReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+        case PRODUCT_RECOMMEND_REQUEST:
+            return { loading: true, products: [] }
+        case PRODUCT_RECOMMEND_SUCCESS:
+            return { loading: false, products: action.payload }
+        case PRODUCT_RECOMMEND_FAIL:
+            return { loading: false, error: action.payload }
         default:
             return state
     }
