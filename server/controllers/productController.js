@@ -3,15 +3,17 @@ import asyncHandler from 'express-async-handler'
 
 //get all products, GET /api/products
 const getProducts = asyncHandler(async (req, res) => {
-    console.log(req.query.keyword)
-    const keyword = req.query.keyword? {
-        name:{
+    const pageSize = 10
+    const page = Number(req.query.pageNumber) || 1
+    const keyword = req.query.keyword ? {
+        name: {
             $regex: req.query.keyword,
             $options: 'i'
         }
     } : {}
-    const products = await Product.find({...keyword})
-    res.json(products)
+    const count = await Product.countDocuments({ ...keyword })
+    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1))
+    res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
 //get a product, GET /api/products/:id
@@ -93,9 +95,9 @@ const addReview = asyncHandler(async (req, res) => {
         }
         product.reviews.push(review)
         product.numReviews = product.reviews.length
-        product.rating = product.reviews.reduce((acc, cur) => cur.rating+acc, 0)/product.reviews.length
+        product.rating = product.reviews.reduce((acc, cur) => cur.rating + acc, 0) / product.reviews.length
         await product.save()
-        res.status(201).json({message: "Review added"})
+        res.status(201).json({ message: "Review added" })
     } else {
         res.status(404)
         throw new Error("Product not found")

@@ -6,28 +6,36 @@ import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { useParams } from 'react-router-dom'
+import Paginate from '../components/Paginate'
 
 const Home = () => {
-    const {keyword} = useParams()
+    var { keyword, pageNumber } = useParams()
+    pageNumber = pageNumber ? pageNumber : 1
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const { loading, error, products, page, pages } = productList
 
     useEffect(() => {
-        dispatch(listProducts(keyword))
-    }, [dispatch, keyword])
+        dispatch(listProducts(keyword, pageNumber))
+    }, [dispatch, keyword, pageNumber])
 
-    return <div>
-        <h4 style={{ fontSize: "1.2rem" }}>NEW IN</h4>
-        {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : <Row>
-            {products.map(product => (
-                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product product={product} />
-                </Col>
-            ))}
-        </Row>}
-
-    </div>
+    return (
+        <>
+            <h4 style={{ fontSize: "1.2rem" }}>NEW IN</h4>
+            {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
+                <>
+                    <Row>
+                        {products.map(product => (
+                            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                <Product product={product} />
+                            </Col>
+                        ))}
+                    </Row>
+                    <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
+                </>
+            )}
+        </>
+    )
 }
 
 export default Home
