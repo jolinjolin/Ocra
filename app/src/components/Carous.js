@@ -33,7 +33,7 @@ const Carous = () => {
                 chevronWidth={chevronWidth}
             >
                 {products.map(el => (
-                    <div id='carousel'>
+                    <div id='carousel' key={el._id}>
                         <Link to={`/product/${el._id}`}>
                             <Image src={el.image} alt={el.name} fluid />
                         </Link>
