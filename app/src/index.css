@@ -51,6 +51,10 @@ div#products-grid a {
     height: 320px;
 }
 
+div#products-grid a {
+    text-decoration: none;
+}
+
 div#products-grid a img {
     width: 100%;
     height: 100%;

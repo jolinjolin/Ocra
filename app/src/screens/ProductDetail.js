@@ -51,29 +51,28 @@ const ProductDetail = () => {
         {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
             <>
                 <Row>
-                    <Col md={6}>
+                    <Col md={6} style={{marginRight: "36px"}}>
                         <Image src={product.image} alt={product.name} fluid></Image>
                     </Col>
-                    <Col md={3}>
+                    <Col md={4} style={{marginLeft: "36px"}}>
                         <ListGroup variant="flush">
-                            <ListGroupItem>
+                            <ListGroupItem className="border-0">
                                 <h4>{product.name}</h4>
                             </ListGroupItem>
-                            <ListGroupItem>
+                            <ListGroupItem className="border-0">
                                 <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                             </ListGroupItem>
-                            <ListGroupItem>
+                            <ListGroupItem className="border-0">
                                 Price: ${product.price}
                             </ListGroupItem>
-                            <ListGroupItem>
+                            <ListGroupItem className="border-0">
                                 Description: {product.description}
                             </ListGroupItem>
                         </ListGroup>
-                    </Col>
-                    <Col md={3}>
-                        <Card>
+
+                        <Card className="border-0" style={{marginTop: "48px"}}>
                             <ListGroup variant="flush">
-                                <ListGroupItem>
+                                <ListGroupItem className="border-0">
                                     <Row>
                                         <Col>
                                             Price:
@@ -83,7 +82,7 @@ const ProductDetail = () => {
                                         </Col>
                                     </Row>
                                 </ListGroupItem>
-                                <ListGroupItem>
+                                <ListGroupItem className="border-0">
                                     <Row>
                                         <Col>
                                             Status:
@@ -94,7 +93,7 @@ const ProductDetail = () => {
                                     </Row>
                                 </ListGroupItem>
                                 {product.countInStock > 0 && (
-                                    <ListGroupItem>
+                                    <ListGroupItem className="border-0">
                                         <Row>
                                             <Col>Qty</Col>
                                             <Col>
@@ -127,7 +126,7 @@ const ProductDetail = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={6} style={{ marginTop: "2rem" }}>
+                    <Col md={10} style={{ marginTop: "36px" }}>
                         <h4 style={{ fontSize: "1.2rem" }}>REVIEWS</h4>
                         {product.reviews.length === 0 && <Message>No reviews</Message>}
                         <ListGroup variant="flush">
@@ -140,7 +139,7 @@ const ProductDetail = () => {
                                 </ListGroupItem>
                             ))}
                             <ListGroupItem>
-                                <h5 style={{ fontSize: "1rem" }}>WRITE A REVIEW</h5>
+                                <h5 style={{ fontSize: "1rem", paddingTop: "24px"}}>WRITE A REVIEW</h5>
                                 {errorProductReview && <Message variant="danger">{errorProductReview}</Message>}
                                 {userInfo ? (
                                     <Form onSubmit={submitHandler}>
