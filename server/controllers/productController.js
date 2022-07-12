@@ -106,7 +106,7 @@ const addReview = asyncHandler(async (req, res) => {
 
 //get recommended products, GET /api/products/top
 const getRecommendedProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({}).sort({ rating: -1 }).limit(5)
+    const products = await Product.find({}).sort({ rating: -1 }).limit(8)
     res.json(products)
 })
 

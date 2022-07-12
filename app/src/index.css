@@ -2,6 +2,10 @@ main {
     min-height: 80vh;
 }
 
+header {
+    background-image: linear-gradient(-225deg, #edf0e4 0%, #e8eaed 52%, #c5e0d8 100%);
+}
+
 .h3,
 h3 {
     padding: 1rem 0;
@@ -15,19 +19,39 @@ h4 {
     margin: 0.1rem;
 }
 
-.carousel {
-    width: 100%;
-    height: 300px;
-    margin: auto;
-    background-image: linear-gradient(-225deg, #edf0e4 0%, #e8eaed 52%, #c5e0d8 100%);
+
+div#carousel-wrap {
+    border: 1px solid rgb(202, 209, 96, 0.2);
+    padding: 0 150px !important;
 }
 
-.carousel img {
-    height: 300px;
-    width: 250px;
-    margin-left: 550px;
+button.carous-btn {
+    border: #edf0e4;
+    width: 30px;
+    height: 30px;
 }
 
-.carousel h4 {
+#carousel img {
+    height: 220px;
+    width: 180px;
+}
+
+#carousel h4 {
     color: #1e1926;
+}
+
+div#products-grid {
+    background-color: white;
+    margin: 0;
+    padding: 10px;
+}
+
+div#products-grid a {
+    width: 240px;
+    height: 320px;
+}
+
+div#products-grid a img {
+    width: 100%;
+    height: 100%;
 }
