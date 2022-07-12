@@ -22,9 +22,9 @@ const Home = () => {
 
     return (
         <>
-            <h4 style={{ fontSize: "1.2rem", marginTop: "8px", color: "#cad160" }}>TOP RATED</h4>
+            {!keyword && <h4 style={{ fontSize: "1.2rem", marginTop: "8px", color: "#cad160" }}>TOP RATED</h4>}
             {!keyword && <Carous />}
-            <h4 style={{ fontSize: "1.2rem", marginTop: "8px", color: "#54de92" }}>NEW IN</h4>
+            {!keyword && <h4 style={{ fontSize: "1.2rem", marginTop: "8px", color: "#54de92" }}>NEW IN</h4>}
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                 <>
                     <Row>
